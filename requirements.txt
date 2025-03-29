@@ -13,4 +13,5 @@ groq
 langchain-groq
 google-genai
 agno
-sklearn
+langchain
+langchain_community
