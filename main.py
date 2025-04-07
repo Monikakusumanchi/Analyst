@@ -58,15 +58,7 @@ MAX_REWRITES = 1 # Limit rewrite attempts
 # #############################################################################
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# #############################################################################
-# Crawler, Processor, Indexing Functions (Paste your fully corrected versions)
-# #############################################################################
-# --- Paste your corrected functions here ---
-# HEADERS, MAIN_CONTENT_SELECTORS, NOISE_TAGS, TEXT_BEARING_TAGS
-# is_valid_url, fetch_page, crawl_website, format_list_item, format_table,
-# get_cleaned_text, process_element_recursive, extract_meaningful_content,
-# process_crawled_data, crawl_and_process, chunk_documents,
-# get_embedding_model, create_faiss_vector_store
+
 HEADERS = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' }
 MAIN_CONTENT_SELECTORS = [ "main", "article", "div.article-body", "div.content__body", "div.DocsPage__body", "div#main", "div#main-content", "div.main-content", "div#content", "div.content", "div[role='main']", ]
 NOISE_TAGS = [ "nav", "header", "footer", "aside", "script", "style", "noscript", "button", "form", "meta", "link", "svg", "path", ".sidebar", ".navigation", ".footer", ".header", ".toc", ".breadcrumb", "#sidebar", "#navigation", "#footer", "#header", "#toc", "#breadcrumb", "*[aria-hidden='true']", ]
@@ -239,9 +231,7 @@ else:
     try: llm = ChatGroq(temperature=0, model_name=GROQ_MODEL_NAME, groq_api_key=groq_api_key)
     except Exception as e: st.error(f"Failed init Groq LLM: {e}", icon="🚨"); logging.error(f"Failed init Groq LLM: {e}")
 
-# --- REMOVED: Web Search Tool ---
 
-# --- Retriever (initialized later) ---
 retriever = None
 
 # --- RAG Chain & Graders & Rewriter ---
@@ -388,13 +378,10 @@ def fail_node(state):
         **{k:v for k,v in state.items() if k not in ['generation', 'documents', 'log']}
         }
 
-# REMOVED: web_search_node
 
 # #############################################################################
 # Graph Edges (Conditional Logic)
 # #############################################################################
-
-# REMOVED: route_question_edge
 
 def decide_generate_or_rewrite_edge(state):
     """Decide whether to generate, rewrite, or fail based on graded docs and rewrites."""
