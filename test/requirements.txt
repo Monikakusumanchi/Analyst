@@ -1,0 +1,17 @@
+fastapi 
+pymongo 
+uvicorn
+python-dotenv
+python-multipart
+pandas
+openai
+langchain_openai 
+langchain_text_splitters 
+faiss-cpu 
+numpy
+groq
+langchain-groq
+google-genai
+agno
+langchain
+langchain_community
