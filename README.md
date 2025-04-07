@@ -141,13 +141,11 @@ All dependencies are listed in `requirements.txt`. Key libraries include:
 *   **Local Embeddings (Sentence Transformers):** Employed `all-MiniLM-L6-v2` for good performance without needing external APIs or keys for the embedding step.
 *   **LLM (Groq):** Utilized Groq (specifically Llama3-8b) for its high inference speed, which is crucial for the multiple LLM calls involved in the agentic workflow (grading, rewriting, generation). Requires a free API key.
 *   **Content Processing:** Standard `requests` and `BeautifulSoup` are used for broad compatibility. Content extraction relies on common CSS selectors, a heuristic approach suitable for many help sites but potentially brittle. Basic list/table formatting preserves some structure.
-*   **Modularity:** Code is organized into functions for distinct tasks (crawling, processing, embedding, indexing, graph nodes, graph edges).
 
 ## 8. Known Limitations
 
 *   **JavaScript Rendering:** The crawler cannot execute JavaScript, so content loaded dynamically on websites will likely be missed.
 *   **Content Extraction Robustness:** The heuristic CSS selector approach for finding main content and filtering noise might fail on websites with non-standard or complex layouts. Needs tuning per site type for optimal results.
-*   **Context Hierarchy:** Only page-level context (URL, Title) is stored with chunks. The agent lacks awareness of document structure (sections, headings).
 *   **Source Citation:** The final answer presented to the user does not automatically include citations (URLs) pointing to the source documents used for generation, although this information is available within the `Document` objects during processing.
 *   **Scalability:** The single-process crawler and local FAISS index will be slow and memory-intensive for very large websites.
 *   **Streamlit State:** Chat history and indexed state are lost if the browser tab is closed or refreshed. The FAISS index persists locally on disk.
